@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const blogPostSchema = new mongoose.Schema({
-  name: {
+  postName: {
     type: String,
     required: true,
   },
 
-  description: {
+  postMessage: {
     type: String,
     required: true,
   },
