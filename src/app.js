@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import bodyParser from "body-parser";
-
+import authAppRouter from "./routes/authRoutes";
 import blogPostAppRouter from "./routes/blogRoutes";
 import connectDB from "./db";
 
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 app.use(bodyParser.json());
-app.use("/user", );
+app.use("/user", authAppRouter);
 
 //admin
 app.use("/blogpost", blogPostAppRouter);

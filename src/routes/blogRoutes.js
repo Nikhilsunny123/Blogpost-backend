@@ -1,5 +1,5 @@
 import express from "express";
-import userAuthenticator from "../../common/userAuthenticator";
+import userAuthenticator from "../helper/authMiddleware";
 import BlogPost from "../models/BLogPost";
 
 const blogPostAppRouter = express.Router();

@@ -1,7 +1,6 @@
 import express from "express";
-import { check, validationResult } from "express-validator";
 import bcrypt from "bcrypt";
-import AuthApp from "../models/authModel";
+import User from "../models/User";
 import jwtToken from "../helper/jwtToken";
 
 const authAppRouter = express.Router();
@@ -9,10 +8,6 @@ const authAppRouter = express.Router();
 //signup user
 authAppRouter.post(
   "/signup",
-  [
-    check("email").notEmpty().withMessage("Invalid email"),
-    check("password").notEmpty().withMessage("Invalid password"),
-  ],
   async (req, res) => {
     try {
       const errors = validationResult(req);
@@ -22,7 +17,7 @@ authAppRouter.post(
 
       const { email, password } = req.body;
       console.log(req.body);
-      const user = await AuthApp.findOne({ email });
+      const user = await User.findOne({ email });
 
       if (user) {
         return res
@@ -53,10 +48,7 @@ authAppRouter.post(
 
 authAppRouter.post(
   "/login",
-  [
-    check("email").notEmpty().withMessage("Invalid email"),
-    check("password").notEmpty().withMessage("Invalid password"),
-  ],
+ 
   async (req, res) => {
     try {
       const errors = validationResult(req);
@@ -66,7 +58,7 @@ authAppRouter.post(
 
       const { email, password } = req.body;
 
-      const user = await AuthApp.findOne({ email });
+      const user = await User.findOne({ email });
 
       console.log(user, "line 73");
       if (!user) {
