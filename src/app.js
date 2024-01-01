@@ -4,9 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./db";
 import bodyParser from "body-parser";
 
-import authAppRouter from "./routes/authRouter";
-import foodAppAdminRouter from "./routes/admin/foodAppAdminRouter";
-import foodAppRouter from "./routes/user/foodAppRouter";
+import authAppRouter from "./routes/authRoutes";
 
 dotenv.config();
 const app = express();
@@ -15,7 +13,7 @@ app.use(cors());
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("yo");
+  res.send("hello");
 });
 app.use(bodyParser.json());
 app.use("/user", authAppRouter);

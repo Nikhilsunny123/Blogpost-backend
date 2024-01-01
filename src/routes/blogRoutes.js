@@ -1,16 +1,15 @@
 import express from "express";
-
 import userAuthenticator from "../../common/userAuthenticator";
-import FoodApp from "../../models/foodModel";
+import BlogPost from "../models/BLogPost";
 
-const foodAppRouter = express.Router();
+const blogPostAppRouter = express.Router();
 
-foodAppRouter.get("/", userAuthenticator, async (req, res) => {
+blogPostAppRouter.get("/", userAuthenticator, async (req, res) => {
   try {
-    const foods = await FoodApp.find({});
+    const posts = await BlogPost.find({});
 
     return res.status(200).json({
-      data: foods,
+      data: posts,
     });
   } catch (error) {
     let message = "Server Error";
@@ -21,16 +20,16 @@ foodAppRouter.get("/", userAuthenticator, async (req, res) => {
   }
 });
 
-foodAppRouter.get("/:itemid", userAuthenticator, async (req, res) => {
+blogPostAppRouter.get("/:postid", userAuthenticator, async (req, res) => {
   try {
-    const itemid = req.params.itemid;
-    console.log(itemid);
-    const food = await FoodApp.findOne({ _id: itemid });
-    if (!food) {
+    const postid = req.params.postid;
+    console.log(postid);
+    const post = await BlogPost.findOne({ _id: postid });
+    if (!post) {
       return res.status(500).json({ message: "food doesnt exist" });
     } else {
       return res.status(200).json({
-        data: food,
+        data: post,
       });
     }
   } catch (error) {
@@ -42,4 +41,4 @@ foodAppRouter.get("/:itemid", userAuthenticator, async (req, res) => {
   }
 });
 
-export default foodAppRouter;
+export default blogPostAppRouter;
