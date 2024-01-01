@@ -1,6 +1,7 @@
 import express from "express";
 import userAuthenticator from "../helper/authMiddleware";
 import BlogPost from "../models/BLogPost";
+import mongoose from "mongoose";
 
 const blogPostAppRouter = express.Router();
 
@@ -102,6 +103,7 @@ blogPostAppRouter.put(
   async (req, res) => {
     try {
       const postid = req.params.postid;
+
       const isValidObjectId = mongoose.Types.ObjectId.isValid;
 
       if (!isValidObjectId(postid)) {
