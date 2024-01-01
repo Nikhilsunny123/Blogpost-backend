@@ -10,11 +10,7 @@ authAppRouter.post(
   "/signup",
   async (req, res) => {
     try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-
+   
       const { email, password } = req.body;
       console.log(req.body);
       const user = await User.findOne({ email });
@@ -26,7 +22,7 @@ authAppRouter.post(
       } else {
         const securepassword = await bcrypt.hash(password, 10);
 
-        const newUser = new AuthApp({
+        const newUser = new User({
           email,
           password: securepassword,
         });
@@ -35,7 +31,7 @@ authAppRouter.post(
 
         return res.status(200).json({
           message: "User created successfully",
-          data: fullname,
+      
         });
       }
     } catch (error) {
@@ -51,10 +47,7 @@ authAppRouter.post(
  
   async (req, res) => {
     try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
+     
 
       const { email, password } = req.body;
 
