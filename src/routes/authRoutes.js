@@ -2,7 +2,7 @@ import express from "express";
 import { check, validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 import AuthApp from "../models/authModel";
-import jwtToken from "../common/jwtToken";
+import jwtToken from "../helper/jwtToken";
 
 const authAppRouter = express.Router();
 
