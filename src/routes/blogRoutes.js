@@ -64,7 +64,7 @@ blogPostAppRouter.post("/add", userAuthenticator, async (req, res) => {
   }
 });
 
-//delete a engine size
+//delete a post
 blogPostAppRouter.delete("/:postid", userAuthenticator, async (req, res) => {
   try {
     const postid = req.params.postid;
@@ -94,7 +94,7 @@ blogPostAppRouter.delete("/:postid", userAuthenticator, async (req, res) => {
   }
 });
 
-//update a engine size
+//update a post
 blogPostAppRouter.put(
   "/:postid",
 
