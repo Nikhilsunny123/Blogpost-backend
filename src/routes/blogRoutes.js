@@ -1,6 +1,6 @@
 import express from "express";
 import userAuthenticator from "../helper/authMiddleware";
-import BlogPost from "../models/BLogPost";
+import BlogPost from "../models/BlogPost";
 import mongoose from "mongoose";
 
 const blogPostAppRouter = express.Router();
